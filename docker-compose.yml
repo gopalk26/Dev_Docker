@@ -1,20 +1,60 @@
-version: '3.8'
+# version: '3.8'
  
+# services:
+#   spring-app:
+#     build:
+#       context: ./dockerSpring  
+#     image: spring-app:1.0.0
+#     container_name: spring-app
+#     ports:
+#       - "9091:9091"
+#     environment:
+#       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mydb
+#       SPRING_DATASOURCE_USERNAME: user
+#       SPRING_DATASOURCE_PASSWORD: userpass
+#     depends_on:
+#       - mysql-db
+ 
+#   spring-micro:
+#     build:
+#       context: ./dockerSpringMicro  
+#     image: another-service:1.0.0
+#     container_name: another-service
+#     ports:
+#       - "9092:9092"
+ 
+#   mysql-db:
+#     image: mysql:8.0
+#     container_name: mysql-db
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: rootpass
+#       MYSQL_DATABASE: mydb
+#       MYSQL_USER: user
+#       MYSQL_PASSWORD: userpass
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+ 
+# volumes:
+#   mysql_data:
+ 
+version: '3.8'
+
 services:
   spring-app:
     build:
-      context: ./dockerSpring  
+      context: ./dockerSpring   
     image: spring-app:1.0.0
     container_name: spring-app
     ports:
       - "9091:9091"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/mydb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: userpass
-    depends_on:
-      - mysql-db
- 
+      SPRING_DATASOURCE_URL: jdbc:mysql://10.5.0.10:3306/dockerDb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: finsol
+
   spring-micro:
     build:
       context: ./dockerSpringMicro  
@@ -22,21 +62,3 @@ services:
     container_name: another-service
     ports:
       - "9092:9092"
- 
-  mysql-db:
-    image: mysql:8.0
-    container_name: mysql-db
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpass
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
- 
-volumes:
-  mysql_data:
- 
